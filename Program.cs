@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+/* Console.WriteLine("Hello, World!");
 int a;
 int b;
 a=10;
@@ -135,4 +135,117 @@ if(double.TryParse(buff4, out numero1) && (double.TryParse(buff5, out numero2)))
     }
 }else{
     Console.WriteLine("DEBE INGRESAR NUMEROS.");
+}
+ */
+//codigo ejercicio 4
+
+string texto;
+Console.WriteLine("Ingrese un texto:");
+texto = Console.ReadLine();
+
+//longitud string
+int longitud = texto.Length;
+Console.WriteLine($"La longitud del string es: {longitud}");
+
+string texto1;
+Console.WriteLine("Ingrese otro texto:");
+texto1 = Console.ReadLine();
+
+//concatenar dos strings
+string interpolacion = $"{texto}{texto1}!";
+string concat = texto + texto1;
+
+Console.WriteLine(interpolacion);
+Console.WriteLine(concat);
+
+//para hacer la subcadena a partir de dos numeros de parametros
+int inicio;
+Console.WriteLine("Ingrese la posición de inicio:");
+string bufff3 = Console.ReadLine();
+int.TryParse(bufff3, out inicio);
+
+int longitud1;
+Console.WriteLine("Ingrese la longitud de la subcadena:");
+string bufff4 = Console.ReadLine();
+int.TryParse(bufff4, out longitud1);
+
+
+if (inicio >= 0 && longitud1 >= 0 && inicio + longitud1 <= texto.Length)
+{
+    string subcadena = texto.Substring(inicio, longitud1);  //para hacer la subcadena a partir de dos numeros de parametros
+    Console.WriteLine($"Subcadena: {subcadena}");
+    int posicion = texto.IndexOf(subcadena);  //para la ocurrencia de la palabra a partir de una subcadena
+    if (posicion != -1)
+    {
+        Console.WriteLine($"La palabra \"{subcadena}\" fue encontrada en la posición {posicion}.");
+    }
+    else
+    {
+        Console.WriteLine($"La palabra \"{subcadena}\" no fue encontrada en el texto.");
+    }
+}
+else
+{
+    Console.WriteLine("Posición o longitud inválida.");
+}
+
+//Console.WriteLine($"la suma de:" {num1.ToString(num1)} y de {num2.ToString()} es = {suma.ToString()});   //tostring
+
+foreach (char c in texto) //Recorrer la cadena de texto con un ciclo Foreach e ir mostrando
+{
+    Console.WriteLine(c);
+}
+
+//cadena a mayúsculas y luego a minúsculas.
+
+Console.WriteLine("Ingrese una cadena de texto:");
+string texto3 = Console.ReadLine();
+
+string mayusculas = texto3.ToUpper();
+string minusculas = texto3.ToLower();
+
+Console.WriteLine($"En mayúsculas: {mayusculas}");
+Console.WriteLine($"En minúsculas: {minusculas}");
+
+
+//separador
+string frase = "uno,dos,tres,cuatro";
+string[] palabras = frase.Split(',');
+
+foreach (string palabra in palabras)
+{
+    Console.WriteLine(palabra);
+}
+
+//ultimo ej
+Console.WriteLine("Ingrese una ecuación ej: 582+2:");
+string ecuacion = Console.ReadLine();
+
+char operador = ' ';
+int posicion = -1;
+
+// Busco el operador en la cadena
+foreach (char c in ecuacion)
+{
+    if (c == '+' || c == '-' || c == '*' || c == '/')
+    {
+        operador = c;
+        posicion = ecuacion.IndexOf(c);
+    }
+}
+
+if (posicion == -1)
+{
+    Console.WriteLine("No se encontro el operador");
+}
+
+// Separar los operandos
+string parte1 = ecuacion.Substring(0, posicion);
+string parte2 = ecuacion.Substring(posicion + 1);
+
+// Convertir a números
+if (int.TryParse(parte1, out int num1) && int.TryParse(parte2, out int num2))
+{
+    int resultado = 0;
+    CALCULADORAV1(parte1, parte2, operador);
 }
